@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Async Loader Example</title>
+<script>
+
+var load = (function() {
+  // Function which returns a function: https://davidwalsh.name/javascript-functions
+  function _load(tag) {
+    return function(url) {
+      // This promise will be used by Promise.all to determine success or failure
+      return new Promise(function(resolve, reject) {
+        var element = document.createElement(tag);
+        var parent = 'body';
+        var attr = 'src';
+
+        // Important success and error for the promise
+        element.onload = function() {
+          resolve(url);
+        };
+        element.onerror = function() {
+          reject(url);
+        };
+
+        // Need to set different attributes depending on tag type
+        switch(tag) {
+          case 'script':
+            element.async = true;
+            break;
+          case 'link':
+            element.type = 'text/css';
+            element.rel = 'stylesheet';
+            attr = 'href';
+            parent = 'head';
+        }
+
+        // Inject into document to kick off loading
+        element[attr] = url;
+        document[parent].appendChild(element);
+      });
+    };
+  }
+  
+  return {
+    css: _load('link'),
+    js: _load('script'),
+  }
+})();
+
+</script>
+</head>
+<body>
+	<h1>Demo</h1>
+	<div id="pie-chart"></div>
+	<div class="ui-widget">
+	  <label for="tags">Tags: </label>
+	  <input id="tags">
+	</div>
+	<script type="text/javascript">
+
+	Promise.all([
+	    //load.css('style.css'),
+	    load.css('https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css')
+	  ]).then(function() {
+	    console.log('Everything has loaded!');
+	  }).catch(function() {
+	    console.log('Oh no, epic failure!');
+	  });
+
+	<!--//--><![CDATA[//><!--
+		var images = new Array()
+		function preload() {
+			for (i = 0; i < preload.arguments.length; i++) {
+				images[i] = new Image()
+				images[i].src = preload.arguments[i]
+			}
+		}
+		preload(
+	      "https://picsum.photos/id/1005/600/400",
+	      "https://picsum.photos/id/1015/600/400",
+	      "https://picsum.photos/id/1025/600/400",
+	      "https://picsum.photos/id/1035/600/400",
+	      "https://picsum.photos/id/1045/600/400",
+	      "https://picsum.photos/id/1055/600/400"
+		)
+	//--><!]]>
+		
+	</script>
+	<script data-main="app/main" src="lib/require.js"></script>
+	<script>
+		requirejs.config({
+			"baseUrl": "app",
+			"paths": {
+				"jquery": "https://code.jquery.com/jquery-3.6.0.min",
+				"jquery.ui": "https://code.jquery.com/ui/1.13.2/jquery-ui.min",
+				"d3": "https://d3js.org/d3.v6.min"
+			}
+		});
+
+		// Load the main app module to start the app
+		//requirejs(["app/main"]);
+
+	</script>
+
+</body>
