@@ -1,8 +1,11 @@
 <?php
 session_start();
 
+// Include autoloader
+require_once '../autoload.php';
+
 // Include database config
-require_once 'config/database.php';
+require_once '../config/database.php';
 
 // Determine the page to load based on the 'page' parameter
 $page = $_GET['page'] ?? 'home';
