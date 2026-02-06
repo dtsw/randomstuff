@@ -1,9 +1,8 @@
 <?php
 session_start();
 
+require_once '../../autoload.php';
 require_once '../config/database.php';
-require_once '../models/Order.php';
-require_once '../models/Movie.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {

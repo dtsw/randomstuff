@@ -1,8 +1,8 @@
 <?php
 session_start();
 
+require_once '../../autoload.php';
 require_once '../config/database.php';
-require_once '../models/User.php';
 
 class AuthController {
     private $userModel;
