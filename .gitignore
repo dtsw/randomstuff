@@ -2,27 +2,43 @@
 # Dependencies
 vendor/
 
-# Logs
+# Logs and temp files
 *.log
+*.tmp
 
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
 
-# IDE
-.vscode/
-.idea/
-
-# OS
+# OS generated files
 .DS_Store
 Thumbs.db
-
-# PHP specific
-*.php~
-*.swp
 
 # Build artifacts
 dist/
 build/
+coverage/
+htmlcov/
+*.pyc
+__pycache__/
+*.class
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.mypy_cache/
+.pytest_cache/
+coverage.xml
 ```
