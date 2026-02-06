@@ -1,0 +1,62 @@
+/* Custom styles for the Movie Exchange Platform */
+
+body {
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.jumbotron {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+.table th {
+    border-top: none;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-columns {
+        column-count: 1;
+    }
+    
+    .table-responsive {
+        font-size: 0.8em;
+    }
+}
+
+/* Additional customizations can be added here */
